@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\CharacterController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+
+Route::get('/characters/fetch', [CharacterController::class, 'fetchCharacters'])->name('characters.fetch');
+Route::post('/characters/store', [CharacterController::class, 'storeCharacters'])->name('characters.store');
+Route::get('/characters', [CharacterController::class, 'index'])->name('characters.index');
+Route::get('/characters/edit/{id}', [CharacterController::class, 'edit'])->name('characters.edit');
+Route::post('/characters/update/{id}', [CharacterController::class, 'update'])->name('characters.update');
